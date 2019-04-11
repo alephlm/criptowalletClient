@@ -1,0 +1,63 @@
+<template>
+  <require from="./formaters/date-formater"></require>
+  
+  <div class="container">
+  <div class="row">
+  <div class="col-md-4">
+  <form submit.trigger="save()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="type">Type</label>
+        <select name="type" id="type" class="form-control" value.bind="portfolioItem.type">
+          <option value="bitcoin">Bitcoin</option>
+          <option value="ethereum">Ethereum</option>
+          <option value="ripple">Ripple</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="type">Amount</label>
+        <input type="number" id="amount" class="form-control" step=".01" value.bind="portfolioItem.amount">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="location">Wallet location</label>
+        <input type="text" id="location" class="form-control" value.bind="portfolioItem.walletLocation">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="date">Date of purchase</label>
+        <input type="date" id="date" class="form-control" value.bind="portfolioItem.dateOfPurchase">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+  </div>
+
+  <div class="col-md-8">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Cryptocurrency</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Wallet Location</th>
+        <th scope="col">Date of purchase</th>
+        <th scope="col">Current market value (EUR)</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr repeat.for="currency of currencies">
+        <td>${currency.type}</td>
+        <td>${currency.amount}</td>
+        <td>${currency.walletLocation}</td>
+        <td>${currency.dateOfPurchase | dateFormat }</td>
+        <td>${currency.currentMarketValue}</td>
+        <td><input type="button" class="btn btn-danger" value="delete" click.delegate="deleteItem(currency.id)"></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+  </div>
+</template>
