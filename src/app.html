@@ -1,5 +1,6 @@
 <template>
   <require from="./formaters/date-formater"></require>
+  <require from="./formaters/money-formater"></require>
   
   <div class="container">
   <div class="row">
@@ -52,7 +53,7 @@
         <td>${currency.amount}</td>
         <td>${currency.walletLocation}</td>
         <td>${currency.dateOfPurchase | dateFormat }</td>
-        <td>${currency.currentMarketValue}</td>
+        <td>${currency.currentMarketValue | moneyFormat }</td>
         <td><input type="button" class="btn btn-danger" value="delete" click.delegate="deleteItem(currency.id)"></td>
       </tr>
     </tbody>

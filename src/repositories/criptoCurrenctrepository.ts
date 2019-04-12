@@ -4,7 +4,7 @@ import { inject } from "aurelia-framework";
 @inject(HttpClient)
 export class CriptoCurrencyRepository {
   http: any;
-  private url = "http://localhost:8081/";
+  private url = "https://lit-chamber-95565.herokuapp.com/";
   constructor(http) {
     this.http = http;
   }
@@ -15,8 +15,8 @@ export class CriptoCurrencyRepository {
   }
 
 
-  save(item) {
-    this.http.fetch(this.url + 'save', { method: 'post', body: json(item) });
+  async save(item) {
+    return await this.http.fetch(this.url + 'save', { method: 'post', body: json(item) });
   }
 
   async deleteItem(itemId: number) {
