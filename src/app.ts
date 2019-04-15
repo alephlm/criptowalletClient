@@ -32,8 +32,11 @@ export class App {
   }
 
   async deleteItem(itemId: number) {
-    await this.repo.deleteItem(itemId);
-    this.getAllItems();
+    var r = confirm("Are you sure?");
+    if (r == true) {
+      await this.repo.deleteItem(itemId);
+      this.getAllItems();
+    }
   }
 
   private initItem(): PortfolioItem {
